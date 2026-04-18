@@ -7,7 +7,7 @@ app = Flask(__name__)
 CORS(app)
 
 # Zadaj sem platný API kľúč
-client = Groq(api_key="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")
+client = Groq(api_key="Tu Zadaj pristupovy kluc")
 
 # Načítanie dát s UTF-8
 with open("data.json", encoding="utf-8") as f:
