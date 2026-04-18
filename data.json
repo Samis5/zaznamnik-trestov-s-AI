@@ -1,0 +1,74 @@
+{
+    "students": [
+        {
+            "id": 1,
+            "name": "Peter Novák",
+            "age": 18,
+            "vyska": 175,
+            "image": "https://cdn.britannica.com/35/238335-050-2CB2EB8A/Lionel-Messi-Argentina-Netherlands-World-Cup-Qatar-2022.jpg"
+        },
+        {
+            "id": 2,
+            "name": "Marek Horváth",
+            "age": 22,
+            "vyska": 182,
+            "image": "https://upload.wikimedia.org/wikipedia/commons/5/58/%C4%BDubo_Roman%2C_2015.jpg"
+        },
+        {
+            "id": 3,
+            "name": "Lucia Kováčová",
+            "age": 19,
+            "vyska": 168,
+            "image": "https://seredsity.sk/wp-content/uploads/2018/02/lukas.jpg"
+        },
+        {
+            "id": 4,
+            "name": "Jana Vargová",
+            "age": 25,
+            "vyska": 170,
+            "image": "https://g.denik.cz/7/b5/nb-nikola-tancosova-romka-story-studentka-rodina-v-centru-14_denik-320-16x9.jpg"
+        },
+        {
+            "id": 5,
+            "name": "Tomáš Tóth",
+            "age": 30,
+            "vyska": 185,
+            "image": "https://www.p-t-s.sk/wp-content/uploads/2023/07/Toth-Matej-PTS-2023-foto-Luky-scaled.jpg"
+        },
+        {
+            "id": 6,
+            "name": "Adam Bielik",
+            "age": 17,
+            "vyska": 178,
+            "image": "https://mediamanager.ws/images/0x13x2000x1125-1360x765xmedia/pages/s/sportnet.sme.sk/2026/03/20260328-hagara204390.jpg"
+        },
+        {
+            "id": 7,
+            "name": "Martin Šimko",
+            "age": 28,
+            "vyska": 190,
+            "image": "https://www.automoli.com/common/vehicles/_assets/img/gallery/f36/smart-fortwo-coupe.jpg"
+        },
+        {
+            "id": 8,
+            "name": "Eva Kráľová",
+            "age": 21,
+            "vyska": 165,
+            "image": "https://cdn-images.dzcdn.net/images/artist/3fa9146c1982c36d23441a8236db5ef1/1900x1900-000000-81-0-0.jpg"
+        },
+        {
+            "id": 9,
+            "name": "Filip Urban",
+            "age": 26,
+            "vyska": 180,
+            "image": "https://www3.teraz.sk/usercontent/photos/b/d/0/4-bd033a48fd73ba75ccf5851fe685aeab412f50e1.jpg"
+        },
+        {
+            "id": 10,
+            "name": "Dominik Krajč",
+            "age": 16,
+            "vyska": 172,
+            "image": "https://cdn-images.dzcdn.net/images/artist/069be3e6ac29ab5239d46907a8f70edf/1900x1900-000000-80-0-0.jpg"
+        }
+    ]
+}
