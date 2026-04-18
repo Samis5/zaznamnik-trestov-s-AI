@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<title>Register trestov AI</title>
+
+<style>
+body{
+    font-family: Arial;
+    background:#111;
+    color:white;
+    padding:20px;
+}
+
+h1{
+    text-align:center;
+}
+
+#search{
+    display:block;
+    margin:20px auto;
+    padding:10px;
+    width:300px;
+    border-radius:8px;
+    border:none;
+}
+
+.grid{
+    display:flex;
+    flex-wrap:wrap;
+    gap:20px;
+    justify-content:center;
+}
+
+.card{
+    background:#222;
+    padding:15px;
+    border-radius:10px;
+    width:220px;
+    cursor:pointer;
+}
+
+img{
+    width:100%;
+    border-radius:10px;
+}
+
+/* CHAT */
+#chatBox{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    width:300px;
+    background:#222;
+    padding:10px;
+    border-radius:10px;
+    display:none;
+}
+
+#messages{
+    height:200px;
+    overflow:auto;
+    font-size:14px;
+    margin-bottom:10px;
+}
+
+input, button{
+    width:100%;
+    padding:8px;
+    margin-top:5px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>📄 REGISTER TRESTOV AI</h1>
+
+<input id="search" placeholder="Hľadať osobu...">
+
+<div id="grid" class="grid"></div>
+
+<!-- CHAT -->
+<div id="chatBox">
+    <div id="messages"></div>
+    <input id="msg" placeholder="Napíš správu...">
+    <button onclick="sendMsg()">Odoslať</button>
+</div>
+
+<script>
+const grid = document.getElementById("grid")
+const search = document.getElementById("search")
+const chatBox = document.getElementById("chatBox")
+const messages = document.getElementById("messages")
+const msgInput = document.getElementById("msg")
+
+let dataGlobal = []
+let selectedId = null
+
+// LOAD BACKEND
+async function loadData(){
+    try{
+        const res = await fetch("http://127.0.0.1:5000/students")
+        const data = await res.json()
+        dataGlobal = data
+        render(dataGlobal)
+    }catch(err){
+        grid.innerHTML = "<p>❌ Nepodarilo sa načítať backend</p>"
+        console.error(err)
+    }
+}
+
+// RENDER CARDS
+function render(data){
+    grid.innerHTML = ""
+
+    data.forEach(p => {
+        grid.innerHTML += `
+        <div class="card" onclick="openChat(${p.id}, '${p.name}')">
+            <img src="${p.image}">
+            <h3>${p.name}</h3>
+            <p>Vek: ${p.age}</p>
+            <p>Výška: ${p.vyska} cm</p>
+        </div>
+        `
+    })
+}
+
+// OPEN CHAT
+function openChat(id, name){
+    selectedId = id
+    chatBox.style.display = "block"
+    messages.innerHTML = `<p>💬 Chat s ${name}</p>`
+}
+
+// SEND MESSAGE TO BACKEND AI
+async function sendMsg(){
+    const text = msgInput.value
+    if(!text) return
+
+    messages.innerHTML += `<p><b>Ty:</b> ${text}</p>`
+
+    const res = await fetch("http://127.0.0.1:5000/chat", {
+        method:"POST",
+        headers:{ "Content-Type":"application/json" },
+        body: JSON.stringify({
+            id: selectedId,
+            message: text
+        })
+    })
+
+    const data = await res.json()
+
+    messages.innerHTML += `<p><b>AI:</b> ${data.reply}</p>`
+    msgInput.value = ""
+}
+
+// SEARCH
+search.addEventListener("input", ()=>{
+    const val = search.value.toLowerCase()
+
+    const filtered = dataGlobal.filter(p =>
+        p.name.toLowerCase().includes(val)
+    )
+
+    render(filtered)
+})
+
+loadData()
+</script>
+
+</body>
+</html>
